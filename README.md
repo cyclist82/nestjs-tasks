@@ -30,6 +30,17 @@ Playground project implementing a basic task management with NestJS.
 $ npm install
 ```
 
+## Database connection
+
+Running this project requires a postgresql database connection. The database configuration is expected to be set by environment variables. For local development these can easily be set by creating a .env file. Please have a look at these example variables.
+
+POSTGRES_HOST=127.0.0.1
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=database
+RUN_MIGRATIONS=true  // should be omitted or set to false for production
+
 ## Running the app
 
 ```bash
