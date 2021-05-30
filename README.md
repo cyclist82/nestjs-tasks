@@ -41,6 +41,12 @@ POSTGRES_PORT=5432
 POSTGRES_DB=database
 RUN_MIGRATIONS=true  // should be omitted or set to false for production
 
+## Authentication
+
+JWT is used for authententication. You'll need to set very secure secret by an environment variable.
+
+JWT_SECRET=topSecret
+
 ## Running the app
 
 ```bash
