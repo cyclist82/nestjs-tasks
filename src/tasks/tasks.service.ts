@@ -23,8 +23,8 @@ export class TasksService {
     return this.taskRepository.createTask(unsavedTask, user);
   }
 
-  async getTaskById(id: number): Promise<Task> {
-    const task = await this.taskRepository.findOne(id);
+  async getTaskById(id: number, user: User): Promise<Task> {
+    const task = await this.taskRepository.findOne({ where: { id, userId: user.id } });
 
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} doesn't exist.`);
@@ -40,8 +40,8 @@ export class TasksService {
     }
   }
 
-  async updateTaskStatus(taskId: number, status: TaskStatus): Promise<Task> {
-    const task = await this.getTaskById(taskId);
+  async updateTaskStatus(taskId: number, status: TaskStatus, user: User): Promise<Task> {
+    const task = await this.getTaskById(taskId, user);
     task.status = status;
     return await task.save();
   }
