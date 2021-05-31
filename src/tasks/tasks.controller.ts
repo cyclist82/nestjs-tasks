@@ -15,8 +15,11 @@ export class TasksController {
   constructor(private tasksService: TasksService) { }
 
   @Get()
-  getTasks(@Query(ValidationPipe) filterDTO: GetTasksFilterDTO = null): Promise<Task[]> {
-    return this.tasksService.getTasks(filterDTO);
+  getTasks(
+    @Query(ValidationPipe) filterDTO: GetTasksFilterDTO = null,
+    @GetUser() user: User
+  ): Promise<Task[]> {
+    return this.tasksService.getTasks(filterDTO, user);
   }
 
   @Get('/:id')
@@ -30,7 +33,6 @@ export class TasksController {
     @Body() unsavedTask: CreateTaskDTO,
     @GetUser() user: User,
   ): Promise<Task> {
-    console.log(user);
     return this.tasksService.createTask(unsavedTask, user)
   }
 
